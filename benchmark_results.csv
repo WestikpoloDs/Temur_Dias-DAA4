@@ -1,0 +1,28 @@
+Category,Algorithm,InputSize,Condition,AvgTimeMs,AvgTimeUs,AvgComparisons,AuxOperations
+DP,LCS,100,Random Strings,0.644057,644.057,10000,10202
+DP,Edit Distance,100,Random Strings,0.626482,626.482,10000,10201
+DP,LCS,500,Random Strings,10.874086,10874.086,250000,251002
+DP,Edit Distance,500,Random Strings,5.590499,5590.499,250000,251001
+DP,LCS,1000,Random Strings,11.662648,11662.648,1000000,1002002
+DP,Edit Distance,1000,Random Strings,9.177188,9177.188,1000000,1002001
+String Matching,Naive,10000,Pattern Present,1.004023,1004.023,10388,0
+String Matching,KMP,10000,Pattern Present,0.952664,952.664,10395,0
+String Matching,Rabin-Karp,10000,Pattern Present,1.812019,1812.019,25,0
+String Matching,Naive,10000,Pattern Absent,0.581752,581.752,9976,0
+String Matching,KMP,10000,Pattern Absent,0.569548,569.548,10025,0
+String Matching,Rabin-Karp,10000,Pattern Absent,1.317144,1317.144,0,0
+String Matching,Naive,50000,Pattern Present,2.708678,2708.678,51977,0
+String Matching,KMP,50000,Pattern Present,2.477671,2477.671,51941,0
+String Matching,Rabin-Karp,50000,Pattern Present,7.375076,7375.076,25,0
+String Matching,Naive,50000,Pattern Absent,1.459717,1459.717,49976,0
+String Matching,KMP,50000,Pattern Absent,0.646462,646.462,50026,0
+String Matching,Rabin-Karp,50000,Pattern Absent,2.185546,2185.546,0,0
+String Matching,Naive,100000,Pattern Present,1.108365,1108.365,103900,0
+String Matching,KMP,100000,Pattern Present,0.987686,987.686,103792,0
+String Matching,Rabin-Karp,100000,Pattern Present,3.268614,3268.614,25,0
+String Matching,Naive,100000,Pattern Absent,0.835996,835.996,99976,0
+String Matching,KMP,100000,Pattern Absent,0.691887,691.887,100027,0
+String Matching,Rabin-Karp,100000,Pattern Absent,1.573808,1573.808,0,0
+Suffix,Kasai LCP,1000,Random Text,0.308747,308.747,1971,974
+Suffix,Kasai LCP,5000,Random Text,1.939620,1939.620,9971,4974
+Suffix,Kasai LCP,10000,Random Text,2.292359,2292.359,19971,9974
