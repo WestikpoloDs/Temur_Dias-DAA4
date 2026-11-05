@@ -321,9 +321,3 @@ The benchmark experiment strictly adheres to the fixed workloads defined in Sect
 | **Suffix Structures** | **Kasai's LCP** | Computes complete LCP array in strict $O(n)$ time using an existing Suffix Array. | Requires precomputed Suffix Array and $O(n)$ auxiliary space for the rank table. | Full-text indexing, finding longest repeated substrings, bioinformatics indexing. |
 
 ---
-- `plots/dp_runtime.png`
-- `plots/string_matching_runtime.png`
-- `plots/kasai_runtime.png`
-- `plots/string_matching_comparisons.png`
-
----
