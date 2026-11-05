@@ -1,9 +1,4 @@
 package edu.textanalysis.dp;
-
-/**
- * Encapsulates the results of a dynamic programming computation,
- * including the computed metric value, the full DP table, and operational metrics.
- */
 public class DPResult {
     private final int value;
     private final int[][] table;
