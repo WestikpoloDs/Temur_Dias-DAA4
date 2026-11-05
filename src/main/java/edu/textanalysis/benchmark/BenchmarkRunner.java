@@ -87,17 +87,13 @@ public class BenchmarkRunner {
         System.out.println("  Fixed Random Seed: " + FIXED_SEED + " | Alphabet: [a-z] (|Sigma|=26) | Trials: " + TRIALS);
         System.out.println("=========================================================================================\n");
 
-        // ----------------------------------------------------
-        // Experiment 1: Dynamic Programming (LCS & Edit Distance)
-        // Sizes: 100, 500, 1,000
-        // ----------------------------------------------------
+
         int[] dpSizes = {100, 500, 1000};
         System.out.println(">>> 1. Dynamic Programming Experiments (LCS & Edit Distance)");
         for (int size : dpSizes) {
             String s1 = generateRandomString(rng, size, ALPHABET);
             String s2 = generateRandomString(rng, size, ALPHABET);
 
-            // LCS Evaluation
             long totalTimeLCS = 0;
             DPResult lcsRes = null;
             for (int t = 0; t < TRIALS; t++) {
@@ -113,7 +109,6 @@ public class BenchmarkRunner {
             System.out.printf("  [LCS]           Size: %-5d | Avg Time: %8.4f ms (%8.2f us) | Comparisons: %10d | Updates: %10d%n",
                     size, avgLcsMs, avgLcsUs, lcsRes.getCharacterComparisons(), lcsRes.getTableUpdates());
 
-            // Edit Distance Evaluation
             long totalTimeED = 0;
             DPResult edRes = null;
             for (int t = 0; t < TRIALS; t++) {
@@ -131,11 +126,6 @@ public class BenchmarkRunner {
         }
         System.out.println();
 
-        // ----------------------------------------------------
-        // Experiment 2: String Matching (Naive, KMP, Rabin-Karp)
-        // Sizes: 10,000, 50,000, 100,000
-        // Workloads: Pattern Present and Pattern Absent
-        // ----------------------------------------------------
         int[] matchingSizes = {10000, 50000, 100000};
         int patternLength = 25;
         StringMatcher[] matchers = {new NaiveMatcher(), new KMPMatcher(), new RabinKarpMatcher()};
@@ -144,11 +134,9 @@ public class BenchmarkRunner {
         for (int size : matchingSizes) {
             String text = generateRandomString(rng, size, ALPHABET);
 
-            // Condition A: Pattern Present
             int startIdx = size / 2;
             String patternPresent = text.substring(startIdx, Math.min(size, startIdx + patternLength));
 
-            // Condition B: Pattern Absent (using uppercase letters not in text alphabet)
             String patternAbsent = generateRandomString(rng, patternLength, "0123456789");
 
             String[][] conditions = {
@@ -180,16 +168,10 @@ public class BenchmarkRunner {
         }
         System.out.println();
 
-        // ----------------------------------------------------
-        // Experiment 3: Kasai's Algorithm for LCP
-        // Sizes: 1,000, 5,000, 10,000
-        // Suffix array generated outside the timed block!
-        // ----------------------------------------------------
         int[] kasaiSizes = {1000, 5000, 10000};
         System.out.println(">>> 3. Kasai's LCP Algorithm Experiments");
         for (int size : kasaiSizes) {
             String text = generateRandomString(rng, size, ALPHABET);
-            // Precompute suffix array outside timed region
             int[] sa = SuffixArrayBuilder.build(text);
 
             long totalTime = 0;
