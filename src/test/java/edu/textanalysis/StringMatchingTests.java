@@ -42,7 +42,6 @@ public class StringMatchingTests {
             }
         }
 
-        // Strict cross-algorithm verification as required by rubric
         if (!rNaive.getOccurrences().equals(rKmp.getOccurrences())) {
             throw new AssertionError(String.format("KMP differs from Naive in %s: Naive=%s, KMP=%s",
                     testName, rNaive.getOccurrences(), rKmp.getOccurrences()));
@@ -76,14 +75,12 @@ public class StringMatchingTests {
     public static void testMultipleOccurrences() {
         String text = "BANANA BANANA";
         String pattern = "ANA";
-        // Indices in "BANANA": 1, 3. In second "BANANA" (offset 7): 8, 10.
         verifyConsistency(text, pattern, Arrays.asList(1, 3, 8, 10), "Multiple Occurrences");
     }
 
     public static void testOverlappingOccurrences() {
         String text = "AAAAA";
         String pattern = "AAA";
-        // Starts at 0, 1, 2
         verifyConsistency(text, pattern, Arrays.asList(0, 1, 2), "Overlapping Occurrences");
     }
 
@@ -102,12 +99,10 @@ public class StringMatchingTests {
     public static void testEmptyPattern() {
         String text = "SOME TEXT";
         String pattern = "";
-        // Documented assumption: empty pattern produces empty list of match indices
         verifyConsistency(text, pattern, Collections.emptyList(), "Empty Pattern (Assumption: Empty list)");
     }
 
     public static void testLongRandomConsistency() {
-        // Stress test consistency on a semi-repetitive text with many partial matches
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 200; i++) {
             sb.append("ABACABA");
