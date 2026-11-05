@@ -4,34 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Edit Distance (Levenshtein distance) implementation using dynamic programming.
- *
- * Problem Definition:
- * Given two strings X of length m and Y of length n, find the minimum number of
- * edit operations (insertions, deletions, substitutions) required to transform
- * string X into string Y.
- *
- * Recurrence Relation:
- * Let D[i][j] denote the minimum edit distance between prefix X[0..i-1] and Y[0..j-1].
- *
- * Base Cases:
- *   D[i][0] = i  for all 0 <= i <= m  (transforming X[0..i-1] to empty string requires i deletions)
- *   D[0][j] = j  for all 0 <= j <= n  (transforming empty string to Y[0..j-1] requires j insertions)
- *
- * Recursive Step:
- *   For i >= 1 and j >= 1:
- *     cost = (X[i-1] == Y[j-1]) ? 0 : 1
- *     D[i][j] = min(
- *                 D[i-1][j] + 1,       // Deletion of X[i-1]
- *                 D[i][j-1] + 1,       // Insertion of Y[j-1]
- *                 D[i-1][j-1] + cost   // Match or Substitution of X[i-1] with Y[j-1]
- *               )
- *
- * Theoretical Complexity:
- *   - Time: O(m * n) since each of the (m + 1) * (n + 1) cells is filled in O(1) constant time.
- *   - Space: O(m * n) auxiliary space for the full 2D dynamic programming table.
- */
 public class EditDistance {
 
     public static DPResult compute(String s1, String s2) {
