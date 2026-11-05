@@ -25,35 +25,7 @@ public class KasaiTests {
         }
     }
 
-    /**
-     * Requirement: Test Kasai on a short string with manually verified suffix array and expected LCP.
-     * String: "banana", length 6.
-     * Suffixes:
-     *   0: banana
-     *   1: anana
-     *   2: nana
-     *   3: ana
-     *   4: na
-     *   5: a
-     *
-     * Lexicographical order:
-     *   SA[0] = 5 ("a")
-     *   SA[1] = 3 ("ana")
-     *   SA[2] = 1 ("anana")
-     *   SA[3] = 0 ("banana")
-     *   SA[4] = 4 ("na")
-     *   SA[5] = 2 ("nana")
-     *
-     * Expected LCP array:
-     *   LCP[0] = 0 (convention)
-     *   LCP[1] = lcp("a", "ana") = 1
-     *   LCP[2] = lcp("ana", "anana") = 3
-     *   LCP[3] = lcp("anana", "banana") = 0
-     *   LCP[4] = lcp("banana", "na") = 0
-     *   LCP[5] = lcp("na", "nana") = 2
-     *
-     * Expected: [0, 1, 3, 0, 0, 2]
-     */
+
     public static void testKasaiManualBanana() {
         String text = "banana";
         int[] manualSA = new int[]{5, 3, 1, 0, 4, 2};
@@ -69,7 +41,6 @@ public class KasaiTests {
         int[] sa = SuffixArrayBuilder.build(text);
         int[] lcp = KasaiLCP.buildLCP(text, sa);
 
-        // Verify LCP definition directly by manual substring comparison
         for (int i = 1; i < text.length(); i++) {
             int saPrev = sa[i - 1];
             int saCurr = sa[i];
@@ -90,9 +61,6 @@ public class KasaiTests {
     public static void testKasaiRepeatedCharacters() {
         String text = "aaaa";
         int[] sa = SuffixArrayBuilder.build(text);
-        // Suffixes: 3("a"), 2("aa"), 1("aaa"), 0("aaaa")
-        // SA = [3, 2, 1, 0]
-        // LCP = [0, 1, 2, 3]
         int[] expectedLCP = new int[]{0, 1, 2, 3};
         int[] lcp = KasaiLCP.buildLCP(text, sa);
         assertEquals(expectedLCP, lcp, "Kasai on 'aaaa' must yield [0, 1, 2, 3]");
