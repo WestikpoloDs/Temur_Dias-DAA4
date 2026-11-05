@@ -46,7 +46,6 @@ public class DPTests {
         }
     }
 
-    // --- LCS Tests ---
 
     public static void testLCSIdenticalStrings() {
         String s = "DYNAMICPROGRAMMING";
@@ -73,12 +72,10 @@ public class DPTests {
     public static void testLCSGeneralCase() {
         String s1 = "AGGTAB";
         String s2 = "GXTXAYB";
-        // Expected LCS: "GTAB", length 4
         assertEquals(4, LCS.computeLength(s1, s2), "LCS of AGGTAB and GXTXAYB must be 4");
 
         String s3 = "ABCBDAB";
         String s4 = "BDCABA";
-        // Expected LCS length: 4 (e.g. "BCBA" or "BDAB")
         assertEquals(4, LCS.computeLength(s3, s4), "LCS of ABCBDAB and BDCABA must be 4");
         System.out.println("  [PASS] LCS General Cases");
     }
@@ -92,7 +89,6 @@ public class DPTests {
         System.out.println("  [PASS] LCS String Reconstruction");
     }
 
-    // --- Edit Distance Tests ---
 
     public static void testEditDistanceIdenticalStrings() {
         String s = "ALGORITHM";
@@ -114,35 +110,27 @@ public class DPTests {
     }
 
     public static void testEditDistanceSubstitution() {
-        // Only substitution needed: C -> H
         assertEquals(1, EditDistance.computeDistance("CAT", "HAT"), "Single substitution distance must be 1");
-        // Two substitutions: C->H, T->P
         assertEquals(2, EditDistance.computeDistance("CAT", "HOT"), "Two substitutions distance must be 2");
         System.out.println("  [PASS] Edit Distance Substitutions");
     }
 
     public static void testEditDistanceInsertion() {
-        // Insertion of 'S' at the end
-        assertEquals(1, EditDistance.computeDistance("CAT", "CATS"), "Single insertion distance must be 1");
-        // Insertion of 'S' at beginning and end
+        assertEquals(1, EditDistance.computeDistance("CAT", "CATS"), "Single insertion distance must be 1")
         assertEquals(2, EditDistance.computeDistance("CAT", "SCATS"), "Two insertions distance must be 2");
         System.out.println("  [PASS] Edit Distance Insertions");
     }
 
     public static void testEditDistanceDeletion() {
-        // Deletion of 'S'
         assertEquals(1, EditDistance.computeDistance("CATS", "CAT"), "Single deletion distance must be 1");
-        // Two deletions
         assertEquals(2, EditDistance.computeDistance("BOATS", "BAT"), "Two deletions distance must be 2");
         System.out.println("  [PASS] Edit Distance Deletions");
     }
 
     public static void testEditDistanceClassicLevenshtein() {
-        // Classic: kitten -> sitting = 3 operations (k->s sub, e->i sub, +g insert)
         int dist = EditDistance.computeDistance("kitten", "sitting");
         assertEquals(3, dist, "Distance between kitten and sitting must be 3");
 
-        // Saturday -> Sunday = 3 (delete 'a', delete 't', substitute 'r'->'n')
         assertEquals(3, EditDistance.computeDistance("Saturday", "Sunday"), "Distance between Saturday and Sunday must be 3");
         System.out.println("  [PASS] Edit Distance Classic Benchmark Pairs");
     }
@@ -150,7 +138,6 @@ public class DPTests {
     public static void testEditDistanceOperationReconstruction() {
         DPResult res = EditDistance.compute("cat", "hats");
         List<String> ops = EditDistance.reconstructOperations("cat", "hats", res.getTable());
-        // Distance is 2 (substitute c->h, insert s)
         assertEquals(2, res.getValue(), "Distance must be 2");
         assertTrue(ops.size() == 4, "Trace must have 4 steps (3 chars + 1 insert)");
         System.out.println("  [PASS] Edit Distance Operation Reconstruction");
